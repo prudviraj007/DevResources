@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        nav {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .nav-grid a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .nav-grid a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-grid a.active {
+            background-color: #333;
+            color: white;
+        }
+
+        .home-btn {
+            background-color: #0066cc !important;
+            color: white !important;
+            font-weight: 600 !important;
+        }
+
+        .home-btn:hover {
+            background-color: #0052a3 !important;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .back-to-top:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        section {
+            margin-bottom: 60px;
+            display: block;
+        }
+
+        section.hidden {
+            display: none;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .category-info {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .sticky-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .sticky-note {
+            background: #fffa87;
+            width: 220px;
+            min-height: 140px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sticky-note:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .sticky-note a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .sticky-note a:hover {
+            color: #0066cc;
+        }
+
+        .sticky-description {
+            color: #555;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .add-note-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .add-note-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .add-note-form input, .add-note-form select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            max-width: 100%;
+        }
+
+        .add-note-form input {
+            width: 250px;
+        }
+
+        .add-note-form select {
+            width: 180px;
+        }
+
+        .add-note-form button {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .add-note-form button:hover {
+            background: #555;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #e5e5e5;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .sticky-note {
+                width: 100%;
+                max-width: 280px;
+            }
+            
+            .nav-grid {
+                justify-content: flex-start;
+            }
+            
+            .add-note-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .add-note-form input, .add-note-form select {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Developer Resources</h1>
+            <p class="subtitle">Essential websites every programmer should bookmark</p>
+        </header>
+
+        <nav>
+            <div class="nav-grid">
+                <a href="#" onclick="showAllSections()" class="home-btn">Home</a>
+                <a href="#" onclick="filterSection('prompts')">AI Prompts</a>
+                <a href="#" onclick="filterSection('help')">Help</a>
+                <a href="#" onclick="filterSection('news')">News</a>
+                <a href="#" onclick="filterSection('practice')">Practice</a>
+                <a href="#" onclick="filterSection('projects')">Projects</a>
+                <a href="#" onclick="filterSection('advice')">Advice</a>
+                <a href="#" onclick="filterSection('style')">Style</a>
+                <a href="#" onclick="filterSection('tools')">Tools</a>
+                <a href="#" onclick="filterSection('interviews')">Interviews</a>
+                <a href="#" onclick="filterSection('learning')">Learning</a>
+                <a href="#" onclick="filterSection('ai-ml')">AI & ML</a>
+                <a href="#" onclick="filterSection('opensource')">Open Source</a>
+                <a href="#" onclick="filterSection('jobs')">Jobs</a>
+            </div>
+        </nav>
+
+        <button class="back-to-top" onclick="scrollToTop()" title="Back to top">↑</button>
+
+        <div class="add-note-section">
+            <h3>Add Your Own Resource</h3>
+            <p>Found a useful developer resource? Add it to the collection!</p>
+            <div class="success-message" id="success-message"></div>
+            <div class="add-note-form">
+                <input type="text" id="new-resource-url" placeholder="Enter URL (e.g., https://example.com)" />
+                <input type="text" id="new-resource-name" placeholder="Resource name" />
+                <input type="text" id="new-resource-description" placeholder="Brief description" />
+                <select id="resource-category">
+                    <option value="">Select Category</option>
+                    <option value="prompts">AI Prompts</option>
+                    <option value="help">Help</option>
+                    <option value="news">Tech News</option>
+                    <option value="practice">Practice</option>
+                    <option value="projects">Projects</option>
+                    <option value="advice">Advice</option>
+                    <option value="style">Style Guides</option>
+                    <option value="tools">Tools</option>
+                    <option value="interviews">Interviews</option>
+                    <option value="learning">Learning</option>
+                    <option value="ai-ml">AI & ML</option>
+                    <option value="opensource">Open Source</option>
+                    <option value="jobs">Jobs</option>
+                </select>
+                <button onclick="addResource()">Add Resource</button>
+            </div>
+        </div>
+
+        <section id="prompts">
+            <h2>AI Prompt Libraries</h2>
+            <div class="category-info">8 essential prompt resources for AI development</div>
+            <div class="sticky-container" id="prompts-container">
+                <!-- Resources will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="help">
+            <h2>When You Get Stuck</h2>
+            <div class="category-info">8 essential help resources</div>
+            <div class="sticky-container" id="help-container">
+                <!-- Resources will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>Tech News & Updates</h2>
+            <div class="category-info">Stay updated with latest trends</div>
+            <div class="sticky-container" id="news-container"></div>
+        </section>
+
+        <section id="practice">
+            <h2>Coding Practice</h2>
+            <div class="category-info">Sharpen your programming skills</div>
+            <div class="sticky-container" id="practice-container"></div>
+        </section>
+
+        <section id="projects">
+            <h2>Project Ideas</h2>
+            <div class="category-info">Build your portfolio</div>
+            <div class="sticky-container" id="projects-container"></div>
+        </section>
+
+        <section id="advice">
+            <h2>General Coding Advice</h2>
+            <div class="category-info">Learn best practices</div>
+            <div class="sticky-container" id="advice-container"></div>
+        </section>
+
+        <section id="style">
+            <h2>Coding Style Guides</h2>
+            <div class="category-info">Write clean, consistent code</div>
+            <div class="sticky-container" id="style-container"></div>
+        </section>
+
+        <section id="tools">
+            <h2>Developer Tools</h2>
+            <div class="category-info">Boost your productivity</div>
+            <div class="sticky-container" id="tools-container"></div>
+        </section>
+
+        <section id="interviews">
+            <h2>Interview Preparation</h2>
+            <div class="category-info">Land your dream job</div>
+            <div class="sticky-container" id="interviews-container"></div>
+        </section>
+
+        <section id="learning">
+            <h2>Online Learning</h2>
+            <div class="category-info">Expand your knowledge</div>
+            <div class="sticky-container" id="learning-container"></div>
+        </section>
+
+        <section id="ai-ml">
+            <h2>AI & Machine Learning</h2>
+            <div class="category-info">Master artificial intelligence</div>
+            <div class="sticky-container" id="ai-ml-container"></div>
+        </section>
+
+        <section id="opensource">
+            <h2>Open Source</h2>
+            <div class="category-info">Contribute to the community</div>
+            <div class="sticky-container" id="opensource-container"></div>
+        </section>
+
+        <section id="jobs">
+            <h2>Jobs & Career</h2>
+            <div class="category-info">Find your next opportunity</div>
+            <div class="sticky-container" id="jobs-container"></div>
+        </section>
+
+        <footer>
+            <p>Developer Resources Collection • Built with minimalist design principles</p>
+        </footer>
+    </div>
+
+    <script>
+        const resources = {
+            prompts: [
+                { name: 'Google AI Studio', url: 'https://aistudio.google.com/app/prompts', description: 'Useful for developers and business owners, integrated with Gemini models.' },
+                { name: 'Hero Prompt Library', url: 'https://hero.page/discover', description: 'Practical prompts for content creation, design, and tools like Midjourney.' },
+                { name: 'Snack Prompt', url: 'https://snackprompt.com/prompts', description: 'Includes free and premium prompts, with ratings; e.g., for book creation.' },
+                { name: 'OpenAI Prompt Library', url: 'https://platform.openai.com/docs/examples', description: 'Developer-focused, with around 50 system-based prompts.' },
+                { name: 'Anthropic Prompt Library', url: 'https://docs.anthropic.com/en/prompt-library/library', description: 'Comprehensive prompts for Claude, including system and user examples.' },
+                { name: 'PromptHero', url: 'https://prompthero.com/', description: 'Searchable prompts for image generation tools like Midjourney and Stable Diffusion.' },
+                { name: 'Github ChatGPT Prompts', url: 'https://github.com/pacholoamit/chatgpt-prompts', description: 'Role-based prompting examples for various scenarios.' },
+                { name: 'Google Vertex AI Prompts', url: 'https://console.cloud.google.com/vertex-ai/studio/prompt-gallery?project=new-slate-websit-1553874306995', description: 'Advanced prompt gallery for developers, with delimiters and examples.' }
+            ],
+            help: [
+                { name: 'Stack Overflow', url: 'https://stackoverflow.com/', description: 'The world\'s largest developer Q&A community.' },
+                { name: 'Codementor', url: 'https://www.codementor.io/', description: 'Live 1:1 coding help and mentorship community.' },
+                { name: 'devRant', url: 'https://devrant.com/', description: 'Community to vent frustrations and connect with developers.' },
+                { name: 'Learn Anything', url: 'https://learn-anything.xyz/', description: 'Interactive learning platform with knowledge graphs.' },
+                { name: 'Stack Exchange', url: 'https://stackexchange.com/', description: 'Network of Q&A sites covering various topics.' },
+                { name: 'CodeRanch', url: 'https://coderanch.com/', description: 'Friendly programming forum for beginners and experts.' },
+                { name: 'Quora', url: 'https://www.quora.com/', description: 'Knowledge sharing platform for detailed explanations.' },
+                { name: 'Google', url: 'https://www.google.com/', description: 'The ultimate search engine for any programming problem.' }
+            ],
+            news: [
+                { name: 'Hacker News', url: 'https://news.ycombinator.com/', description: 'Top-tier tech news aggregator and discussion platform.' },
+                { name: 'DEV Community', url: 'https://dev.to/', description: 'Developer community for sharing ideas and experiences.' },
+                { name: 'AlternativeTo', url: 'https://alternativeto.net/', description: 'Crowdsourced software recommendations and alternatives.' },
+                { name: 'Better Dev Links', url: 'https://betterdev.link/', description: 'Weekly curated links for developers to learn and grow.' },
+                { name: 'Better Programming', url: 'https://betterprogramming.pub/', description: 'Quality programming articles and tutorials on Medium.' },
+                { name: 'Ars Technica', url: 'https://arstechnica.com/', description: 'In-depth technology journalism and analysis.' },
+                { name: 'TechCrunch', url: 'https://techcrunch.com/', description: 'Startup and technology industry news.' },
+                { name: 'The Verge', url: 'https://www.theverge.com/', description: 'Technology, science, and culture coverage.' }
+            ],
+            practice: [
+                { name: 'freeCodeCamp', url: 'https://www.freecodecamp.org/', description: 'Comprehensive free coding curriculum and certifications.' },
+                { name: 'Codecademy', url: 'https://www.codecademy.com/', description: 'Interactive coding lessons and hands-on projects.' },
+                { name: 'Exercism', url: 'https://exercism.io/', description: 'Code practice and mentorship in 60+ programming languages.' },
+                { name: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/', description: 'Programming tutorials, practice problems, and interview prep.' },
+                { name: 'CodeAbbey', url: 'https://www.codeabbey.com/', description: 'Programming problems from beginner to advanced levels.' },
+                { name: 'Edabit', url: 'https://edabit.com/', description: 'Small coding challenges to practice daily programming.' },
+                { name: 'Learn Git Branching', url: 'https://learngitbranching.js.org/', description: 'Interactive Git tutorial for version control mastery.' },
+                { name: 'The Odin Project', url: 'https://www.theodinproject.com/', description: 'Full-stack web development curriculum.' }
+            ],
+            projects: [
+                { name: 'karan/Projects', url: 'https://github.com/karan/Projects', description: 'Mega list of practical programming projects for skill building.' },
+                { name: 'App Ideas Collection', url: 'https://github.com/florinpop17/app-ideas', description: 'Application ideas to improve coding skills from beginner to advanced.' },
+                { name: 'r/AppIdeas', url: 'https://www.reddit.com/r/AppIdeas/', description: 'Reddit community for sharing and discussing app ideas.' },
+                { name: 'r/SomebodyMakeThis', url: 'https://www.reddit.com/r/SomebodyMakeThis/', description: 'Ideas that need developers to bring them to life.' },
+                { name: 'React Project Ideas', url: 'https://github.com/topics/react-projects', description: 'Collection of modern React project ideas and implementations.' }
+            ],
+            advice: [
+                { name: 'Refactoring Guru', url: 'https://refactoring.guru/', description: 'Design patterns, refactoring techniques, and SOLID principles.' },
+                { name: 'Game Programming Patterns', url: 'https://gameprogrammingpatterns.com/', description: 'Design patterns specifically for game development.' },
+                { name: 'Teach Yourself CS', url: 'https://teachyourselfcs.com/', description: 'Self-taught computer science curriculum with recommended resources.' },
+                { name: 'OWASP', url: 'https://owasp.org/', description: 'Web application security best practices and guidelines.' },
+                { name: 'Martin Fowler', url: 'https://martinfowler.com/', description: 'Software architecture patterns and development insights.' },
+                { name: 'OSSU Computer Science', url: 'https://github.com/ossu/computer-science', description: 'Complete self-taught CS education using online materials.' }
+            ],
+            style: [
+                { name: 'Airbnb JavaScript Style Guide', url: 'https://github.com/airbnb/javascript', description: 'Comprehensive JavaScript coding standards used by Airbnb.' },
+                { name: 'Airbnb Ruby Style Guide', url: 'https://github.com/airbnb/ruby', description: 'Ruby coding conventions and best practices from Airbnb.' },
+                { name: 'Google C++ Style Guide', url: 'https://google.github.io/styleguide/cppguide.html', description: 'Google\'s comprehensive C++ coding standards.' },
+                { name: 'PEP 8 - Python Style Guide', url: 'https://peps.python.org/pep-0008/', description: 'Official Python style guide for readable, maintainable code.' },
+                { name: 'Standard JS Style Guide', url: 'https://standardjs.com/', description: 'JavaScript style guide with automatic code formatting.' },
+                { name: 'Hitchhiker\'s Guide to Python', url: 'https://docs.python-guide.org/', description: 'Best practices for Python installation, configuration, and usage.' }
+            ],
+            tools: [
+                { name: 'CodePen', url: 'https://codepen.io/', description: 'Online code editor for frontend development and experimentation.' },
+                { name: 'CoderPad', url: 'https://www.coderpad.io/', description: 'Collaborative coding platform for interviews and pair programming.' },
+                { name: 'Crontab Guru', url: 'https://crontab.guru/', description: 'Easy cron schedule expression editor and validator.' },
+                { name: 'Diagrams.net', url: 'https://app.diagrams.net/', description: 'Free online diagramming tool for flowcharts and system designs.' },
+                { name: 'Free for Dev', url: 'https://free-for.dev/', description: 'Comprehensive list of free services and tools for developers.' },
+                { name: 'Imgur', url: 'https://imgur.com/', description: 'Simple image hosting service for sharing screenshots and images.' },
+                { name: 'regex101', url: 'https://regex101.com/', description: 'Online regex tester with explanation and code generation.' },
+                { name: 'RegExr', url: 'https://regexr.com/', description: 'Interactive regex learning tool with real-time testing.' }
+            ],
+            interviews: [
+                { name: 'LeetCode', url: 'https://leetcode.com/', description: 'Premier platform for coding interview preparation with 2600+ problems.' },
+                { name: 'HackerRank', url: 'https://www.hackerrank.com/', description: 'Coding challenges and technical interview preparation platform.' },
+                { name: 'NeetCode', url: 'https://neetcode.io/', description: 'Curated coding interview problems with video explanations.' },
+                { name: 'Tech Interview Handbook', url: 'https://www.techinterviewhandbook.org/', description: 'Complete guide to acing technical interviews at top companies.' },
+                { name: 'InterviewBit', url: 'https://www.interviewbit.com/', description: 'Gamified programming interview preparation platform.' },
+                { name: 'Pramp', url: 'https://www.pramp.com/', description: 'Free mock technical interviews with peer-to-peer practice.' },
+                { name: 'Big-O Cheat Sheet', url: 'https://www.bigocheatsheet.com/', description: 'Quick reference for algorithm time and space complexity.' }
+            ],
+            learning: [
+                { name: 'Coursera', url: 'https://www.coursera.org/', description: 'University-quality courses and degrees from top institutions.' },
+                { name: 'edX', url: 'https://www.edx.org/', description: 'Free online courses from Harvard, MIT, and other top universities.' },
+                { name: 'Harvard CS50', url: 'https://pll.harvard.edu/course/cs50-introduction-computer-science', description: 'Harvard\'s famous introduction to computer science course.' },
+                { name: 'MIT OpenCourseWare', url: 'https://ocw.mit.edu/', description: 'Free MIT course materials for self-directed learning.' },
+                { name: 'Boot.dev', url: 'https://boot.dev/', description: 'Gamified backend development learning with hands-on projects.' },
+                { name: 'Pluralsight', url: 'https://www.pluralsight.com/', description: 'Technology skills platform with expert-led courses.' }
+            ],
+            'ai-ml': [
+                { name: 'TensorFlow', url: 'https://www.tensorflow.org/', description: 'Open-source machine learning platform by Google.' },
+                { name: 'fast.ai', url: 'https://www.fast.ai/', description: 'Practical deep learning for coders with top-down approach.' },
+                { name: 'DeepLearning.AI', url: 'https://www.deeplearning.ai/', description: 'Andrew Ng\'s comprehensive deep learning courses.' },
+                { name: 'Scikit-learn', url: 'https://scikit-learn.org/', description: 'Python machine learning library with excellent documentation.' },
+                { name: 'Google ML Crash Course', url: 'https://developers.google.com/machine-learning/crash-course', description: 'Fast-paced introduction to machine learning with TensorFlow.' },
+                { name: 'Elements of AI', url: 'https://www.elementsofai.com/', description: 'Free course combining theory and practical exercises in AI.' }
+            ],
+            opensource: [
+                { name: 'GitHub', url: 'https://github.com/', description: 'World\'s leading software development and collaboration platform.' },
+                { name: 'GitLab', url: 'https://gitlab.com/', description: 'Complete DevOps platform with Git repository management.' },
+                { name: 'Google Summer of Code', url: 'https://summerofcode.withgoogle.com/', description: 'Annual program connecting students with open source projects.' },
+                { name: 'Open Source Initiative', url: 'https://opensource.org/', description: 'Organization dedicated to promoting open source software.' },
+                { name: 'SourceForge', url: 'https://sourceforge.net/', description: 'Long-standing platform for open source project hosting.' }
+            ],
+            jobs: [
+                { name: 'LinkedIn Jobs', url: 'https://www.linkedin.com/jobs/', description: 'Professional networking and job search platform.' },
+                { name: 'Stack Overflow Jobs', url: 'https://stackoverflow.com/jobs', description: 'Developer-focused job board with detailed company insights.' },
+                { name: 'AngelList', url: 'https://angel.co/', description: 'Startup jobs and investment platform for entrepreneurs.' },
+                { name: 'Internshala', url: 'https://internshala.com/', description: 'Internship and entry-level job platform for students.' }
+            ]
+        };
+
+        // Track current active section for filtering
+        let currentActiveSection = null;
+
+        function createStickyNote(name, url, description) {
+            const div = document.createElement('div');
+            div.classList.add('sticky-note');
+            div.innerHTML = `
+                <a href="${url}" target="_blank">${name}</a>
+                <div class="sticky-description">${description}</div>
+            `;
+            return div;
+        }
+
+        function renderResources() {
+            Object.keys(resources).forEach(category => {
+                const container = document.getElementById(`${category}-container`);
+                if (container) {
+                    resources[category].forEach(resource => {
+                        const stickyNote = createStickyNote(resource.name, resource.url, resource.description);
+                        container.appendChild(stickyNote);
+                    });
+                }
+            });
+        }
+
+        function filterSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.remove('hidden');
+            }
+
+            // Update nav active state
+            const navItems = document.querySelectorAll('.nav-grid a');
+            navItems.forEach(item => item.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Track current section
+            currentActiveSection = sectionId;
+
+            // Scroll to top
+            scrollToTop();
+        }
+
+        function showAllSections() {
+            // Show all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('hidden');
+            });
+
+            // Update nav active state
+            const navItems = document.querySelectorAll('.nav-grid a');
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            // Reset current section
+            currentActiveSection = null;
+            
+            // Scroll to top
+            scrollToTop();
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function showSuccessMessage(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            
+            // Hide the message after 5 seconds
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function addResource() {
+            const urlInput = document.getElementById('new-resource-url');
+            const nameInput = document.getElementById('new-resource-name');
+            const descriptionInput = document.getElementById('new-resource-description');
+            const categorySelect = document.getElementById('resource-category');
+            
+            const url = urlInput.value.trim();
+            const name = nameInput.value.trim();
+            const description = descriptionInput.value.trim();
+            const category = categorySelect.value;
+            
+            if (!url || !name || !category) {
+                alert('Please fill in URL, name, and select a category.');
+                return;
+            }
+            
+            try {
+                new URL(url);
+            } catch (e) {
+                alert('Please enter a valid URL.');
+                return;
+            }
+            
+            const finalDescription = description || 'User-added resource';
+            
+            // Add to selected category
+            const targetContainer = document.getElementById(`${category}-container`);
+            if (targetContainer) {
+                const stickyNote = createStickyNote(name, url, finalDescription);
+                targetContainer.appendChild(stickyNote);
+                
+                // Also add to resources object for persistence
+                if (!resources[category]) {
+                    resources[category] = [];
+                }
+                resources[category].push({
+                    name: name,
+                    url: url,
+                    description: finalDescription
+                });
+                
+                // Show success message
+                const categoryNames = {
+                    'prompts': 'AI Prompts',
+                    'help': 'Help',
+                    'news': 'Tech News',
+                    'practice': 'Practice',
+                    'projects': 'Projects',
+                    'advice': 'Advice',
+                    'style': 'Style Guides',
+                    'tools': 'Tools',
+                    'interviews': 'Interviews',
+                    'learning': 'Learning',
+                    'ai-ml': 'AI & ML',
+                    'opensource': 'Open Source',
+                    'jobs': 'Jobs'
+                };
+                
+                showSuccessMessage(`✅ Resource "${name}" added to ${categoryNames[category]} section!`);
+                
+                // If currently filtering and the new resource belongs to a different section,
+                // show all sections so the user can see their addition
+                if (currentActiveSection && currentActiveSection !== category) {
+                    showAllSections();
+                }
+                
+                // Clear inputs
+                urlInput.value = '';
+                nameInput.value = '';
+                descriptionInput.value = '';
+                categorySelect.value = '';
+            }
+        }
+
+        // Initialize the page
+        renderResources();
+    </script>
+</body>
+</html>
